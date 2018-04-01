@@ -5,15 +5,15 @@ A ideia é possibilitar a criação de uma macro simples para ser executada diar
 
 # Arquivos de configuração. 
 
-Macro.ini
+macro.txt
 	
 	Lista de comandos executados pela Macro.  
  
-Macro_datas_excessao.ini
+macro_datas_excessao.txt
 
 	Datas em que a Macro não deverá ser executada.
 	
-Macro_hora.ini
+macro_hora.txt
 
 	Horários de execução da Macro.  
 	

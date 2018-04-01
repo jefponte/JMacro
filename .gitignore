@@ -1,0 +1,16 @@
+*.class
+*.classpath
+*.lock
+*.project
+*.prefs
+*.jar
+*.properties
+*.lst
+*.rar
+*.settings
+*.buildpath
+*.metadata
+*.recommenders
+*.zip
+*.exe
+/target/

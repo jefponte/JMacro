@@ -1,3 +1,4 @@
+[Adicione comandos da Macro Aqui] 
 click(384,554)
 click(473,557)
 click(532,555)
@@ -7,6 +8,8 @@ enter()
 digitar(www.facebook.com)
 enter()
 maximizar()
+click(324,210)
+click(324,210)
 click(324,210)
 digitar(testando macro)
 click(704,448)

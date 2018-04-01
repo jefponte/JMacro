@@ -22,6 +22,7 @@ public class JMacroView extends JFrame {
 	 * Create the frame.
 	 */
 	public JMacroView() {
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(3, 3, 206, 212);
 		contentPane = new JPanel();

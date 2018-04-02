@@ -4,20 +4,17 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import br.jmacro.view.JMacroView;
@@ -177,10 +174,11 @@ public class JMacro {
 	
 	
 	public void carregarRotina(){
+		
 		Properties config = new Properties();
 		FileInputStream file;
 		try {
-			file = new FileInputStream("rotina.txt");
+			file = new FileInputStream(ARQUIVO_ROTINA);
 			config.load(file);
 			for (Object string : config.keySet()) {
 				String macroID = config.getProperty(string.toString());
@@ -188,6 +186,7 @@ public class JMacro {
 			}
 			file.close();
 		} catch (IOException e) {
+			
 			e.printStackTrace();
 		}
 	}
@@ -196,8 +195,6 @@ public class JMacro {
 			@Override
 			public void run() {
 				do{
-					
-					System.out.println(new Date().toString());
 					for (Rotina rotina : rotinas) {
 						System.out.println("Verificando rotina "+rotina.getMacroID());
 						
@@ -221,7 +218,12 @@ public class JMacro {
 								cal.set(Calendar.YEAR, calAtual.get(Calendar.YEAR));
 								carregar(rotina.getMacroID());
 								executarLista();
-								log("Execução de macro "+rotina.getMacroID()+" em "+cal.getTime().toString(), "log.txt");
+								
+								SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+								Date now = Calendar.getInstance().getTime(); 
+								String dataFormatada = sdf.format(now);
+								
+								log("Execução de macro "+rotina.getMacroID()+" em "+dataFormatada, "log.txt");
 								
 							}else{
 								System.out.println("Data igual, comando ja foi executado.");
@@ -283,7 +285,7 @@ public class JMacro {
 			}
 
 		}
-
-	}
 	
+	}
+	public static final String ARQUIVO_ROTINA = "rotina.txt";
 }

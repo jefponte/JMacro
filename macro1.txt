@@ -1,4 +1,3 @@
-[Adicione comandos da Macro Aqui] 
 click(384,554)
 click(473,557)
 click(532,555)

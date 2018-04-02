@@ -12,8 +12,10 @@ public class Rotina {
 	public Rotina(String hora, String macroID) {
 		this.macroID = macroID;
 		try {
+			System.out.println("Construtor do rotina hora:"+hora);
 			SimpleDateFormat sdf = new SimpleDateFormat("HH.mm");
 			Date data = sdf.parse(hora);
+			
 			this.hora = Calendar.getInstance();
 			this.hora.setTime(data);
 

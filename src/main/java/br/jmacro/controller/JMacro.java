@@ -4,6 +4,8 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +15,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import br.jmacro.view.JMacroView;
@@ -26,10 +31,12 @@ public class JMacro {
 	
 	
 	public JMacro(){
+		
 		rotinas = new ArrayList<>();
 		comandos = new ArrayList<>();
 		view = new JMacroView();
 		view.setVisible(false);
+		
 		try {
 			robot = new Robot();
 		} catch (AWTException e) {
@@ -59,6 +66,7 @@ public class JMacro {
 		}
 		try {
 
+			comandos.clear();
 			FileInputStream arquivo = new FileInputStream(arquivoVerifica);
 			BufferedReader linhaArquivo = new BufferedReader(new InputStreamReader(arquivo));
 			linhaArquivo.ready();
@@ -180,10 +188,102 @@ public class JMacro {
 			}
 			file.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-			
 	}
+	public void verificandoRotina(){
+		Thread verificando = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				do{
+					
+					System.out.println(new Date().toString());
+					for (Rotina rotina : rotinas) {
+						System.out.println("Verificando rotina "+rotina.getMacroID());
+						
+						Calendar calAtual = Calendar.getInstance();
+						calAtual.setTime(new Date());
+						Calendar cal = rotina.getHora();
+						
+						int horaAtual =  calAtual.get(Calendar.HOUR_OF_DAY);
+						int minutoAtual = calAtual.get(Calendar.MINUTE);
+						int mesAtual = calAtual.get(Calendar.MONTH);
+						int diaAtual = calAtual.get(Calendar.DAY_OF_MONTH);
+						System.out.println("Minuto Atual: "+minutoAtual);
+						System.out.println("Minuto da Rotina: "+ cal.get(Calendar.MINUTE));
+						
+						if(horaAtual == cal.get(Calendar.HOUR_OF_DAY) && minutoAtual == cal.get(Calendar.MINUTE)){
+							System.out.println("Hora minuto igual");
+							if (!(mesAtual == cal.get(Calendar.MONTH) && diaAtual == cal.get(Calendar.DAY_OF_MONTH))){
+								System.out.println("Data diferente, executar comandos");
+								cal.set(Calendar.MONTH, mesAtual);
+								cal.set(Calendar.DAY_OF_MONTH, diaAtual);
+								cal.set(Calendar.YEAR, calAtual.get(Calendar.YEAR));
+								carregar(rotina.getMacroID());
+								executarLista();
+								log("Execução de macro "+rotina.getMacroID()+" em "+cal.getTime().toString(), "log.txt");
+								
+							}else{
+								System.out.println("Data igual, comando ja foi executado.");
+								System.out.println("Mes da Rotina:"+rotina.getHora().get(Calendar.MONTH));
+								
+								
+							}
+						}else{
+							System.out.println("Hora minuto difetrente");
+							
+						}
+						System.out.println("-------------");
+					}
+					try {
+						Thread.sleep(20000);
+						
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}while(true);
+				
+			}
+		});
+		verificando.start();
+	}
+	public void log(String mensagem, String nomeArquivo) {
+		File arquivo = new File(nomeArquivo);
+		if (!arquivo.exists()) {
+			try {
+				arquivo.createNewFile();
+				FileWriter fw = new FileWriter(arquivo, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				bw.write(mensagem);
+				bw.newLine();
+				bw.close();
+				fw.close();
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		else
+
+		{
+			try {
+
+				FileWriter fw = new FileWriter(arquivo, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				bw.write(mensagem);
+				bw.newLine();
+				bw.close();
+				fw.close();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+	
 }

@@ -1,0 +1,2 @@
+Execução de macro macro1.txt em Sun Apr 01 22:06:00 GMT-03:00 2018
+Execução de macro macro1.txt em Sun Apr 01 22:10:00 GMT-03:00 2018

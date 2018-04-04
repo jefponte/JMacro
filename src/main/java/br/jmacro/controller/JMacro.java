@@ -109,7 +109,18 @@ public class JMacro {
 		if (mensagem.indexOf('(') != -1 && mensagem.indexOf(')') != -1) {
 			String comando = mensagem.substring(0, mensagem.indexOf('('));
 			String parametros = mensagem.substring((mensagem.indexOf('(') + 1), mensagem.indexOf(')'));
-
+			if(comando.equals("espera")){
+				try {
+					Thread.sleep(Integer.parseInt(parametros.trim()));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
 			if (comando.equals("click")) {
 				
 				try {
@@ -128,12 +139,13 @@ public class JMacro {
 				} catch (StringIndexOutOfBoundsException e) {
 					System.out.println("click exige dois parametros numéricos. ");
 				}
-
+				return;
 			} else if (comando.equals("digitar")) {
 				for (int i = 0; i < parametros.length(); i++) {
 					char c = parametros.charAt(i);
 					teclar(c);
 				}
+				return;
 			} else if (comando.equals("enter")) {
 
 				try {
@@ -145,7 +157,7 @@ public class JMacro {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+				return;
 			} else if (comando.equals("maximizar")) {
 				try {
 					Thread.sleep(200);
@@ -160,7 +172,17 @@ public class JMacro {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+				
+				return;
+			} else if(comando.equals("esc")) {
+				robot.keyPress(KeyEvent.VK_ESCAPE);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				robot.keyRelease(KeyEvent.VK_ESCAPE);
 			}
 
 		}

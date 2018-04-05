@@ -124,15 +124,21 @@ public class JMacro {
 			if (comando.equals("click")) {
 				
 				try {
+					
 					int x = Integer.parseInt(parametros.substring(0, parametros.indexOf(',')).trim());
 					int y = Integer.parseInt(parametros.substring(parametros.indexOf(',') + 1).trim());
-
+					if(x < 220 || y < 230){
+						view.setLocation(300, 300);
+					}
 					robot.mouseMove(x, y);
 					Thread.sleep(200);
 					robot.mousePress(InputEvent.BUTTON1_MASK);
 					Thread.sleep(100);
 					robot.mouseRelease(InputEvent.BUTTON1_MASK);
 					Thread.sleep(500);
+					if(x < 220 || y < 230){
+						view.setLocation(3,3);
+					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

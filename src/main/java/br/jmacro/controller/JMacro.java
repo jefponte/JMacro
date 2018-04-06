@@ -213,6 +213,16 @@ public class JMacro {
 				}
 				robot.keyRelease(KeyEvent.VK_ESCAPE);
 				return;
+			}else if(comando.equals("tab")) {
+				robot.keyPress(KeyEvent.VK_TAB);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				robot.keyRelease(KeyEvent.VK_ESCAPE);
+				return;
 			}
 
 		}

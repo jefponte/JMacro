@@ -19,16 +19,17 @@ rotina.txt
  
 macro1.txt
 
-	Arquivo que descreve a macro. 
-	lista de comandos possíveis. 
+	Arquivo com comandos que descrevem a macro. 
+
+Lista de comandos possíveis para uma macro: 
 	
-		click(12,12)
-		digitar(texto)
-		enter()
-		maximizar()
-		capturar()
-		colar()
-		altf4()
-		altf2() 
-	
+	click(12,12)
+	digitar(texto)
+	enter()
+	espera(1000)
+	maximizar()
+	capturar()
+	colar()
+	altf4()
+	altf2()
 	

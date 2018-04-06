@@ -5,16 +5,27 @@ A ideia é possibilitar a criação de uma macro simples para ser executada diar
 
 # Arquivos de configuração. 
 
-macro.txt
+rotina.txt
 	
-	Lista de comandos executados pela Macro.  
+	Lista de macros a serem realizadas. 
+	Cada macro será identificada por uma hora e 
+	minuto separados por ponto ".". Da seguinte forma
+	12.35 e depois um sinal de igualdade e o nome do 
+	arquivo que descreverá a macro.
+	
+	12.35=macro1.txt indica que às 12 horas e 35 minutos 
+	será executada a macro descrita no arquivo macro1.txt. 
+
  
-macro_datas_excessao.txt
+macro1.txt
 
-	Datas em que a Macro não deverá ser executada.
+	Arquivo que descreve a macro. 
+	lista de comandos possíveis. 
 	
-macro_hora.txt
-
-	Horários de execução da Macro.  
+	click(12,12)
+	capturar()
+	colar()
+	altf4()
+	altf2() 
 	
 	

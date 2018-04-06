@@ -23,6 +23,9 @@ macro1.txt
 	lista de comandos possíveis. 
 	
 		click(12,12)
+		digitar(texto)
+		enter()
+		maximizar()
 		capturar()
 		colar()
 		altf4()

@@ -180,7 +180,30 @@ public class JMacro {
 				}
 				
 				return;
-			} else if(comando.equals("esc")) {
+			}else if(comando.equals("capturar")){
+				robot.keyPress(KeyEvent.VK_PRINTSCREEN);
+				robot.keyRelease(KeyEvent.VK_PRINTSCREEN);
+				return;
+			} else if(comando.equals("colar")){
+				robot.keyPress(KeyEvent.VK_CONTROL);
+				robot.keyPress(KeyEvent.VK_V);
+				robot.keyRelease(KeyEvent.VK_V);
+				robot.keyRelease(KeyEvent.VK_CONTROL);
+				return;
+			}else if(comando.equals("altf2")){
+				robot.keyPress(KeyEvent.VK_ALT);
+				robot.keyPress(KeyEvent.VK_F2);
+				robot.keyRelease(KeyEvent.VK_ALT);
+				robot.keyRelease(KeyEvent.VK_F2);
+				return;
+			}else if(comando.equals("altf4")){
+				robot.keyPress(KeyEvent.VK_ALT);
+				robot.keyPress(KeyEvent.VK_F4);
+				robot.keyRelease(KeyEvent.VK_ALT);
+				robot.keyRelease(KeyEvent.VK_F4);
+				return;
+			}
+			else if(comando.equals("esc")) {
 				robot.keyPress(KeyEvent.VK_ESCAPE);
 				try {
 					Thread.sleep(100);
@@ -189,6 +212,7 @@ public class JMacro {
 					e.printStackTrace();
 				}
 				robot.keyRelease(KeyEvent.VK_ESCAPE);
+				return;
 			}
 
 		}
@@ -266,8 +290,8 @@ public class JMacro {
 						int minutoAtual = calAtual.get(Calendar.MINUTE);
 						int mesAtual = calAtual.get(Calendar.MONTH);
 						int diaAtual = calAtual.get(Calendar.DAY_OF_MONTH);
-						System.out.println("Minuto Atual: " + minutoAtual);
-						System.out.println("Minuto da Rotina: " + cal.get(Calendar.MINUTE));
+						System.out.println("Minuto Atual:" + minutoAtual);
+						System.out.println("Minuto da Rotina:" + cal.get(Calendar.MINUTE));
 
 						if (horaAtual == cal.get(Calendar.HOUR_OF_DAY) && minutoAtual == cal.get(Calendar.MINUTE)) {
 							System.out.println("Hora minuto igual");

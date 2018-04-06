@@ -22,10 +22,10 @@ macro1.txt
 	Arquivo que descreve a macro. 
 	lista de comandos possíveis. 
 	
-	click(12,12)
-	capturar()
-	colar()
-	altf4()
-	altf2() 
+		click(12,12)
+		capturar()
+		colar()
+		altf4()
+		altf2() 
 	
 	

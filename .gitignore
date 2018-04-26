@@ -13,4 +13,5 @@
 *.recommenders
 *.zip
 *.exe
+log.txt
 /target/

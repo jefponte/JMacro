@@ -23,10 +23,10 @@ macro1.txt
 
 Lista de comandos possíveis para uma macro: 
 	
-	click(12,12) 	- Clica em um ponto (x,y).  
-	digitar(texto) 	- Digita um texto.
+	click(12,12) 		- Clica em um ponto (x,y).  
+	digitar(texto) 		- Digita um texto.
 	enter() 		- Tecla Enter.
-	espera(1000) 	- Aguarda milisegundos.  
+	espera(1000) 		- Aguarda milisegundos.  
 	maximizar()		- Maximiza janelas. 
 	capturar()		- Pressiona PrintScream, capturando tela. 
 	colar()			- Pressiona Control+V, colando. 

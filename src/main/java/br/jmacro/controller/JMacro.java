@@ -1,10 +1,15 @@
 package br.jmacro.controller;
 
 import java.awt.AWTException;
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
+import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
+
+import javax.imageio.ImageIO;
 
 import br.jmacro.view.JMacroView;
 
@@ -181,8 +188,7 @@ public class JMacro {
 				
 				return;
 			}else if(comando.equals("capturar")){
-				robot.keyPress(KeyEvent.VK_PRINTSCREEN);
-				robot.keyRelease(KeyEvent.VK_PRINTSCREEN);
+				this.capturar();
 				return;
 			} else if(comando.equals("colar")){
 				robot.keyPress(KeyEvent.VK_CONTROL);
@@ -229,6 +235,43 @@ public class JMacro {
 
 	}
 
+	public void capturar() {
+		Robot robot = null;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss_dd.MM.yyyy");
+		Date now = Calendar.getInstance().getTime();
+		String dataFormatada = sdf.format(now);
+		
+		File f1 = new File("C:\\Users\\jef\\Documents\\ponto\\"+dataFormatada+".JPEG");
+		try {
+			
+			robot = new Robot(GraphicsEnvironment.getLocalGraphicsEnvironment()
+							.getDefaultScreenDevice());
+			Toolkit toolkit = Toolkit.getDefaultToolkit();
+			final Dimension dimension = toolkit.getScreenSize();
+			
+			BufferedImage bi = robot.createScreenCapture(new Rectangle(0, 0,
+						dimension.width, dimension.height));
+			try {
+				ImageIO.write(bi, "JPEG", f1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				// Faz a thread dormir 2 minutos.
+			
+			
+			
+		} catch (HeadlessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
 	public void teclar(char c) {
 		boolean capsLigado = Toolkit.getDefaultToolkit().getLockingKeyState(KeyEvent.VK_CAPS_LOCK);
 		if (capsLigado) {

@@ -35,8 +35,8 @@ public class JMacro {
 
 	public JMacro() {
 
-		rotinas = new ArrayList<>();
-		comandos = new ArrayList<>();
+		rotinas = new ArrayList<Rotina>();
+		comandos = new ArrayList<String>();
 		view = new JMacroView();
 		view.setVisible(false);
 
@@ -329,7 +329,6 @@ public class JMacro {
 
 	public void verificandoRotina() {
 		Thread verificando = new Thread(new Runnable() {
-			@Override
 			public void run() {
 				do {
 					for (Rotina rotina : rotinas) {

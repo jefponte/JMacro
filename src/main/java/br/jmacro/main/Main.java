@@ -18,14 +18,14 @@ public class Main {
 		frame.setVisible(true);
 		frame.setBounds(0, 0, 300, 300);
 		
-		JMacro macro = new JMacro();
-		macro.carregar("macro.txt");
-		macro.executarLista();
+//		JMacro macro = new JMacro();
+//		macro.carregar("macro.txt");
+//		macro.executarLista();
 		
 //		
-//		JMacro macro = new JMacro();
-//		macro.carregarRotina();
-//		macro.verificandoRotina();
+		JMacro macro = new JMacro();
+		macro.carregarRotina();
+		macro.verificandoRotina();
 
 	}
 
